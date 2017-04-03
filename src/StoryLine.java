@@ -1,12 +1,12 @@
-package src;
+//package src;
 
 public enum StoryLine
 {
     //TODO: Add a file location for computer
-	intro (StoryLine2.intro,"C:/Users/chess/Documents/NetBeansProjects/Test/Test/src/test/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/intro.txt"),
-	store1 (StoryLine2.store1,"C:/Users/chess/Documents/NetBeansProjects/Test/Test/src/test/Story/store1.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/store1.txt"),
-	dungeon1 (StoryLine2.dungeon1,"C:/Users/chess/Documents/NetBeansProjects/Test/Test/src/test/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/dungeon1.txt"),
-	battle (StoryLine2.battle,"C:/Users/chess/Documents/NetBeansProjects/Test/Test/src/test/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/battle.txt");
+	intro (StoryLine2.intro,"C:/Users/chess/Documents/NetBeansProjects/Rpg/src/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/intro.txt"),
+	store1 (StoryLine2.store1,"C:/Users/chess/Documents/NetBeansProjects/Rpg/src/Story/store1.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/store1.txt"),
+	dungeon1 (StoryLine2.dungeon1,"C:/Users/chess/Documents/NetBeansProjects/Rpg/src/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/dungeon1.txt"),
+	battle (StoryLine2.battle,"C:/Users/chess/Documents/NetBeansProjects/Rpg/src/Story/intro.txt", "/storage/emulated/0/AppProjects/RandomRPGNormal/src/Story/battle.txt");
 	
 	private final StoryLine2 state;
 	private final String fileLocationComputer;
