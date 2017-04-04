@@ -227,6 +227,7 @@ public class Store
 		String temp;
 		int choice;
 		String [] endItems;
+		int arraySize;
 		
 		while( true )
 		{
@@ -237,10 +238,12 @@ public class Store
 			{
 				case WeaponsTab:
 					temp = "<Weapon> Armor Items\tYour money: $" + player.getMoney();
-					String [] 	weaponsArray = new String[weapons.size()+ 3];
-					for(int i = 0; i < weapons.size(); i++){
+					arraySize = weapons.size()+ 3;
+					String [] 	weaponsArray = new String[ arraySize ];
+					if( weapons.size() > 0 )
+						for(int i = 0; i < weapons.size(); i++){
 						//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-						weaponsArray[i] = weapons.get(i).getName() + "\t" + weapons.get(i).getCost();
+							weaponsArray[i] = weapons.get(i).getName() + "\t" + weapons.get(i).getCost();
 					}
 					endItems = new String[]{
 						"Tab left",
@@ -248,64 +251,88 @@ public class Store
 						"Leave"
 					};
 					choice = interactionEvent.getOptionInput( temp, weapons, endItems, 1 );
-					System.out.println( weaponsArray[choice] );
-					if( choice == weaponsArray.length - 3 )
+					choice--;
+					System.out.println( choice + " == " + weaponsArray[choice] );
+					if( choice == arraySize - 3)
 						tab = tabLeft( tab );
-					else if( choice == weaponsArray.length - 2 )
+					else if( choice == arraySize - 2)
 						tab = tabRight( tab );
-					else if( choice == weaponsArray.length - 1 )
+					else if( choice == arraySize - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
 					}
-					player.sellWeapon( --choice );
+					if( weapons.size() > 0 )
+					{
+						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( choice == 0 )
+							player.sellWeapon( choice );
+					}
 					break;
 				case ArmorTab:
 					temp = "Weapon <Armor> Items\tYour money: $" + player.getMoney();
-					String [] 	armorArray = new String[armor.size()+ 3];
-					for(int i = 0; i < armor.size(); i++){
-						//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-						armorArray[i] = armor.get(i).getName() + "\t" + armor.get(i).getCost();
-					}
+					arraySize = armor.size()+ 3;
+					String [] 	armorArray = new String[ arraySize ];
+					if( armor.size() > 0 )
+						for(int i = 0; i < armor.size(); i++){
+							//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
+							armorArray[i] = armor.get(i).getName() + "\t" + armor.get(i).getCost();
+						}
 					endItems = new String[]{
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
 					choice = interactionEvent.getOptionInput( temp, 1, armor, endItems);
-					System.out.println( choice );
-					if( choice == armorArray.length - 3 )
+					choice--;
+					System.out.println( choice + " == " + armorArray[choice] );
+					if( choice == arraySize - 3)
 						tab = tabLeft( tab );
-					else if( choice == armorArray.length - 2 )
+					else if( choice == arraySize - 2)
 						tab = tabRight( tab );
-					else if( choice == armorArray.length - 1 )
+					else if( choice == arraySize - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
+					}
+					if( armor.size() > 0 )
+					{
+						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( choice == 0 )
+							player.sellArmor( choice );
 					}
 					break;
 				case ItemsTab:
 					temp = "Weapon Armor <Items>\tYour money: $" + player.getMoney();
-					String [] 	itemsArray = new String[items.size()+ 3];
-					for(int i = 0; i < armor.size(); i++){
-						//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-						itemsArray[i] = items.get(i).getName() + "\t" + items.get(i).getCost();
-					}
+					arraySize = items.size()+ 3;
+					String [] 	itemsArray = new String[ arraySize ];
+					if( items.size() > 0 )
+						for(int i = 0; i < items.size(); i++){
+							//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
+							itemsArray[i] = items.get(i).getName() + "\t" + items.get(i).getCost();
+						}
 					endItems = new String[]{
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
-					choice = interactionEvent.getOptionInput( temp, 1, armor, endItems);
-					System.out.println( choice );
-					if( choice == itemsArray.length - 3 )
+					choice = interactionEvent.getOptionInput( temp, items, 1, endItems);
+					choice--;
+					System.out.println( choice + " == " + itemsArray[choice] );
+					if( choice == arraySize - 3)
 						tab = tabLeft( tab );
-					else if( choice == itemsArray.length - 2 )
+					else if( choice == arraySize - 2)
 						tab = tabRight( tab );
-					else if( choice == itemsArray.length - 1 )
+					else if( choice == arraySize - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
+					}
+					if( items.size() > 0 )
+					{
+						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( choice == 0 )
+							player.sellItem( choice );
 					}
 					break;
 			}

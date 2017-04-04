@@ -97,6 +97,45 @@ public class InteractionEvent
 		return -1;
 	}
 
+	public int getOptionInput(String output, LinkedList<Items> items, int p2, String[] endOptions)
+	{
+		LinkedList<String> linkedOption = new LinkedList<String>();
+
+		switch( p2 )
+		{
+			case 0:
+				System.out.println( "\n\n" + output );
+
+				for(int i = 0; i < items.size(); i++)
+				{
+					linkedOption.add(items.get(i).getName() + "\t" + items.get(i).getDescription());
+				}
+
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+			case 1:
+
+				System.out.println( "\n\n" + output );
+
+				for(int i = 0; i < items.size(); i++)
+				{
+					linkedOption.add(items.get(i).getName() + "\t" + items.get(i).getCost());
+				}
+
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+		}
+		return -1;
+	}
+
 	public int getOptionInput(String output, int h, LinkedList<Armor> armor, String [] endOptions)
 	{
 		LinkedList<String> linkedOption = new LinkedList<String>();
