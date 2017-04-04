@@ -183,7 +183,6 @@ public class Store
 				case ItemsTab:
 					temp = "Weapons Armor <Items>\tYour money: $" + player.getMoney();
 					String [] itemsArray = new String[]{
-						"There are no items",
 						"View Inventory",
 						"Tab left",
 						"Tab Right",
@@ -264,8 +263,8 @@ public class Store
 					}
 					if( weapons.size() > 0 )
 					{
-						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
-						if( choice == 0 )
+						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( --confirm == 0 )
 							player.sellWeapon( choice );
 					}
 					break;
@@ -297,8 +296,8 @@ public class Store
 					}
 					if( armor.size() > 0 )
 					{
-						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
-						if( choice == 0 )
+						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( --confirm == 0 )
 							player.sellArmor( choice );
 					}
 					break;
@@ -330,8 +329,8 @@ public class Store
 					}
 					if( items.size() > 0 )
 					{
-						choice = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
-						if( choice == 0 )
+						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
+						if( --confirm == 0 )
 							player.sellItem( choice );
 					}
 					break;
