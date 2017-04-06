@@ -182,7 +182,9 @@ public class Inventory
 	
 	public Weapons getWeapon( int index )
 	{
-		return weapons.get( index );
+		if( index >= 0)
+			return weapons.get( index );
+			return null;
 	}
 
 	public Armor getArmor( int index )
