@@ -41,12 +41,22 @@ public class Player
 		mana = playerRole.getBaseMana();
 	}
 
+	public void useItem(Item item)
+	{
+		// TODO: Implement this method
+	}
+
 	public Inventory getInventory()
 	{
 		return inventory;
 	}
 
 	public void equip(Weapons weapon)
+	{
+		// TODO: Implement this method
+	}
+
+	public void equip(Armor armor)
 	{
 		// TODO: Implement this method
 	}

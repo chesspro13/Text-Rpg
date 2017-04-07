@@ -6,7 +6,7 @@ public class Inventory
 {
 	LinkedList<Weapons> weapons;
 	LinkedList<Armor> armor;
-	LinkedList<Items> items;
+	LinkedList<Item> items;
 	
 	Player player;
 	
@@ -40,7 +40,7 @@ public class Inventory
 		return armor;
 	}
 
-	public LinkedList<Items> getItems()
+	public LinkedList<Item> getItems()
 	{
 		return items;
 	}
@@ -69,7 +69,8 @@ public class Inventory
 					"Leave"
 				};
 				choice = interactionEvent.getOptionInput( header, weapons, endOptions, 1 );
-				System.out.println( weaponsArray[choice] );
+				choice--;
+				System.out.println( choice + " = " + weaponsArray[choice] );
 				if( choice == weaponsArray.length - 3 )
 					tab = tabLeft( tab );
 				else if( choice == weaponsArray.length - 2 )
@@ -91,7 +92,8 @@ public class Inventory
 					"Tab Right",
 					"Leave"
 				};
-				choice = interactionEvent.getOptionInput( header, weapons, endOptions, 1 );
+				choice = interactionEvent.getOptionInput( header, 1, armor, endOptions);
+				choice--;
 				System.out.println( armorArray[choice] );
 				if( choice == armorArray.length - 3 )
 					tab = tabLeft( tab );
@@ -99,6 +101,33 @@ public class Inventory
 					tab = tabRight( tab );
 				else if( choice == armorArray.length - 1 )
 					return;
+				else
+					viewItem( armor.get( choice ));
+				break;
+			case ItemsTab:
+				header = "Weapon Armor <Items>\tYour money: $" + player.getMoney();
+				String [] 	itemsArray = new String[items.size()+ 3];
+				for(int i = 0; i < items.size(); i++){
+					//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
+					itemsArray[i] = items.get(i).getName() + "\t" + items.get(i).getDescription();
+				}
+				endOptions = new String[]{
+					"Tab left",
+					"Tab Right",
+					"Leave"
+				};
+				choice = interactionEvent.getOptionInput( header, items, 1, endOptions );
+				choice--;
+				System.out.println( choice + " = " + itemsArray[choice] );
+				if( choice == itemsArray.length - 3 )
+					tab = tabLeft( tab );
+				else if( choice == itemsArray.length - 2 )
+					tab = tabRight( tab );
+				else if( choice == itemsArray.length - 1 )
+					return;
+				else
+					viewItem( this.items.get(choice ) );
+				break;
 		}
 	}
 	
@@ -145,12 +174,53 @@ public class Inventory
 				uiEvent.printWithPause( weapon.name() + " is equiped!\nAttack: " + (player.getAttack() + weapon.getAttack()));
 				break;
 			case 2:
-				weapon = null;
+				this.weapons.remove( weapon );
 				break;
 			case 3:
 				return;
 		}
 	}
+
+	private void viewItem(Armor armor)
+	{
+		String temp = "Name: " + armor.getName()
+			+ "\nAttack: " + armor.getDeffence()
+			+ "\nDescription: " + armor.getDescription();
+
+		switch( interactionEvent.getOptionInput(temp, new String[]{"Equip", "Drop", "exit"}) )
+		{
+			case 1:
+				player.equip( armor );
+				uiEvent.printWithPause( armor.name() + " is equiped!\nAttack: " + (player.getAttack() + armor.getDeffence()));
+				break;
+			case 2:
+				this.armor.remove( armor );
+				break;
+			case 3:
+				return;
+		}
+	}
+
+	private void viewItem(Item item)
+	{
+		String temp = "Name: " + item.getName()
+			+ "\nAttack: " + item.getEffect()
+			+ "\nDescription: " + item.getDescription();
+
+		switch( interactionEvent.getOptionInput(temp, new String[]{"use", "Drop", "exit"}) )
+		{
+			case 1:
+				player.useItem( item );
+				uiEvent.printWithPause( "used " + item.getName() );
+				break;
+			case 2:this.items.remove( item );
+				break;
+			case 3:
+				return;
+		}
+	}
+	
+	
 
 	public void addItem(Weapons weapon)
 	{
@@ -191,7 +261,7 @@ public class Inventory
 		return armor.get( index );
 	}
 
-	public Items getItem( int index )
+	public Item getItem( int index )
 	{
 		return items.get( index );
 	}

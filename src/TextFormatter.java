@@ -1,42 +1,41 @@
 
-import java.util.*;public class TextFormatter
+import java.util.*;
+import org.apache.http.conn.ssl.*;public class TextFormatter
 {
-	private static final int NUM_OF_SPACES_IN_TAB = 5;
+	private static final int NUM_OF_SPACES_IN_TAB = 4;
 	
-	private LinkedList<String[]> weapons;
-	private String [] output;
+	private String[] weapons;
+	private String output;
 	private String newString;
 	private int maxLetters;
-	private double numOfTabs;
+	private double numOfSpaces;
+	private double remainder;
 	private int size;
 	
-	public String[] format( LinkedList<String []> weapons )
+	public String format( String [] weapons )
 	{
+	    
 		this.weapons = weapons;
-		output = new String[weapons.size()];
 		
-		for( int i = 0; i < weapons.size(); i++ )
-		{
-		maxLetters = getMaxCount( maxLetters, weapons.get(i)[0].length() );
-		}
+		//for( int i = 0; i < weapons.length; i++ )
+		//{
+			output = weapons[0];
+		size = weapons[0].length();
+		System.out.println(maxLetters + ":" + size);
+//		numOfSpaces = (double)(maxLetters - size);
 		
-		for( int i = 0; i < weapons.size(); i++ )
-		{
-			output[i] = weapons.get(i)[0];
-			size = weapons.get(i)[0].length();
-			numOfTabs = maxLetters - size;
-			numOfTabs = Math.ceil(numOfTabs);
-
-			for( int j = 0; j < numOfTabs; j++ )
-			{
-				output[i] += "\t";
-			}
-			output[i] += weapons.get(i)[1] + "\t";
-			output[i] += weapons.get(i)[2] + "\t";
-			output[i] += weapons.get(i)[3] + "\t";
-			output[i] += weapons.get(i)[4];
-		}
+		for( int j = size; j < maxLetters; j++ )
+			output += " ";
+		output += weapons[1];
+		//}
 		return output;
+	}
+	
+	public void getMax(LinkedList<String[]> array)
+	{
+		for( int i = 0; i < array.size(); i++)
+			maxLetters = getMaxCount( maxLetters, array.get(i)[0].length() );
+		maxLetters += 4;
 	}
 	
 	private int getMaxCount(int max, int newNum)
@@ -46,5 +45,12 @@ import java.util.*;public class TextFormatter
 		if( max < newNum )
 			max = newNum;
 		return max;
+	}
+	
+	private double roundToFive( double num )
+	{
+		double whole = num / NUM_OF_SPACES_IN_TAB;
+		double extra = 0;
+		return 0;
 	}
 }

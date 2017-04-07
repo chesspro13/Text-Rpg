@@ -15,9 +15,10 @@ public class Game
 	InteractionEvent interactionEvent;
 	Store store;
         
-        boolean usingComputer;
+   	boolean usingComputer;
+	boolean forceDebug;
 	
-	public Game( boolean usingComputer )
+	public Game( boolean usingComputer, boolean forceDebug )
 	{
 		try{
 		uiEvent = 	new UiEvent();
@@ -31,7 +32,8 @@ public class Game
 		
 		currentState = StoryLine.intro;
 		
-                this.usingComputer = usingComputer;
+        this.usingComputer = usingComputer;
+		this.forceDebug = forceDebug;
                 
 		while( true )
 			update();
@@ -58,7 +60,7 @@ public class Game
 				{	System.out.println("Unable to open intro.txt\n" + e);	}
 				break;
 			case store1:
-				store.startStore();
+				store.startStore( forceDebug );
 //				try{
 //					if (scanner[1] == null)
 //						scanner[1] = new Scanner(new File(StoryLine.intro.getFileLocation() ));

@@ -4,10 +4,12 @@ import java.util.*;
 
 public class InteractionEvent
 {
+	TextFormatter formatter;
 	Scanner scanner;
 
 	public InteractionEvent()
 	{
+		formatter = new TextFormatter();
 		scanner = new Scanner(System.in);
 	}
 
@@ -32,6 +34,13 @@ public class InteractionEvent
 	public int getOptionInput(String output, LinkedList<Weapons> weapons, int h)
 	{
 		LinkedList<String> linkedOption = new LinkedList<String>();
+		LinkedList<String[]> temp = new LinkedList<String[]>();
+		for( int i = 0; i < weapons.size(); i++)
+		{
+			//temp.add( new String[]{weapons.get(i).getName());
+		}
+		
+	//	String [] temp = formatter.format(weapons);
 		
 		switch( h )
 		{
@@ -40,7 +49,7 @@ public class InteractionEvent
 
 				for(int i = 0; i < weapons.size(); i++)
 				{
-					linkedOption.add(weapons.get(i).getName() + "\t" + weapons.get(i).getDescription());
+					//linkedOption.add( temp[i] );
 				}
 
 				return getOptionInput( output, linkedOption );
@@ -58,9 +67,50 @@ public class InteractionEvent
 		return -1;
 	}
 
+	public int getOptionInput(String output, LinkedList<String []> array, String [] endOptions, char h)
+	{
+		LinkedList<String> linkedOption = new LinkedList<String>();
+		TextFormatter tf = new TextFormatter();
+		tf.getMax(array);
+
+		switch( h )
+		{
+			case 'a':
+				System.out.println( "\n\n" + output );
+				for(int i = 0; i < array.size(); i++)
+				{
+					linkedOption.add( tf.format(array.get(i) ) );
+				}
+
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+			case '1':
+
+				System.out.println( "\n\n" + output );
+
+				for(int i = 0; i < array.size(); i++)
+				{
+					//linkedOption.add(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
+				}
+
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+		}
+		return -1;
+	}
+	
 	public int getOptionInput(String output, LinkedList<Weapons> weapons, String [] endOptions, int h)
 	{
 		LinkedList<String> linkedOption = new LinkedList<String>();
+		//String [] temp = formatter.format(weapons);
 
 		switch( h )
 		{
@@ -97,7 +147,7 @@ public class InteractionEvent
 		return -1;
 	}
 
-	public int getOptionInput(String output, LinkedList<Items> items, int p2, String[] endOptions)
+	public int getOptionInput(String output, LinkedList<Item> items, int p2, String[] endOptions)
 	{
 		LinkedList<String> linkedOption = new LinkedList<String>();
 
