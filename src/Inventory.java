@@ -90,6 +90,7 @@ public class Inventory
 		{
 			//TODO: Add more information to inventory
 			case WeaponsTab:
+                            // TODO: Fix me
 				header = "<Weapon> Armor Items\tYour money: $" + player.getMoney();
 				String [] 	weaponsArray = new String[weapons.size()+ 3];
 				for(int i = 0; i < weapons.size(); i++){
@@ -106,9 +107,9 @@ public class Inventory
 				System.out.println( choice + " = " + weaponsArray[choice] );
 				if( choice == weaponsArray.length - 3 )
 					tab = tabLeft( tab );
-				else if( choice == weaponsArray.length - 2 )
-					tab = tabRight( tab );
 				else if( choice == weaponsArray.length - 1 )
+					tab = tabRight( tab );
+				else if( choice == weaponsArray.length - 0 )
 					return;
 				else
 					viewItem( weapons.get( choice ) );
