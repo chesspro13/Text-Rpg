@@ -15,6 +15,18 @@ public class Item
 		this.description = weapon.getDescription();
 	}
 
+	public String getCost()
+	{
+		// TODO: Implement this method
+		return null;
+	}
+
+	public String getEffect()
+	{
+		// TODO: Implement this method
+		return null;
+	}
+
 	public String getName()
 	{
 		return name;

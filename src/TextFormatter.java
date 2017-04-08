@@ -1,47 +1,40 @@
 
-import java.util.*;public class TextFormatter
+import java.util.*;
+import org.apache.http.conn.ssl.*;
+import java.lang.annotation.*;public class TextFormatter
 {
-	private static final int NUM_OF_SPACES_IN_TAB = 5;
+	private static final int NUM_OF_SPACES_IN_TAB = 4;
 	
-	private LinkedList<String[]> weapons;
-	private String [] output;
-	private String newString;
+	private String output;
 	private int maxLetters;
-	private double numOfTabs;
 	private int size;
 	
-	public String[] format( LinkedList<String []> weapons )
+	public String format( String outputArray, String [] array, int [] elements)
 	{
-		this.weapons = weapons;
-		output = new String[weapons.size()];
-		
-		for( int i = 0; i < weapons.size(); i++ )
-		{
-		maxLetters = getMaxCount( maxLetters, weapons.get(i)[0].length() );
-		}
-		
-		for( int i = 0; i < weapons.size(); i++ )
-		{
-			output[i] = weapons.get(i)[0];
-			size = weapons.get(i)[0].length();
-			numOfTabs = maxLetters - size;
-			numOfTabs = Math.ceil(numOfTabs);
+		output = outputArray;
+		size = outputArray.length();
+		//System.out.println(maxLetters + ":" + size);
 
-			for( int j = 0; j < numOfTabs; j++ )
-			{
-				output[i] += "\t";
-			}
-			output[i] += weapons.get(i)[1] + "\t";
-			output[i] += weapons.get(i)[2] + "\t";
-			output[i] += weapons.get(i)[3] + "\t";
-			output[i] += weapons.get(i)[4];
-		}
+		
+		for( int j = size; j < maxLetters; j++ )
+			output += " ";
+		if( elements.length != 0)
+			for( int i = 0; i < elements.length; i++)
+				output += array[elements[i]] + "\t";
+		//output += array[ elements[ elements.length -1 ] ];
 		return output;
+	}
+	
+	public void getMax(LinkedList<String[]> array)
+	{
+		for( int i = 0; i < array.size(); i++)
+			maxLetters = getMaxCount( maxLetters, array.get(i)[0].length() );
+		maxLetters += 4;
 	}
 	
 	private int getMaxCount(int max, int newNum)
 	{
-		if( newNum % 5 == 0)
+		if( newNum % NUM_OF_SPACES_IN_TAB == 0)
 			newNum++;
 		if( max < newNum )
 			max = newNum;
