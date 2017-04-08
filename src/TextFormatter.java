@@ -1,33 +1,27 @@
 
 import java.util.*;
-import org.apache.http.conn.ssl.*;public class TextFormatter
+import org.apache.http.conn.ssl.*;
+import java.lang.annotation.*;public class TextFormatter
 {
 	private static final int NUM_OF_SPACES_IN_TAB = 4;
 	
-	private String[] weapons;
 	private String output;
-	private String newString;
 	private int maxLetters;
-	private double numOfSpaces;
-	private double remainder;
 	private int size;
 	
-	public String format( String [] weapons )
+	public String format( String outputArray, String [] array, int [] elements)
 	{
-	    
-		this.weapons = weapons;
-		
-		//for( int i = 0; i < weapons.length; i++ )
-		//{
-			output = weapons[0];
-		size = weapons[0].length();
-		System.out.println(maxLetters + ":" + size);
-//		numOfSpaces = (double)(maxLetters - size);
+		output = outputArray;
+		size = outputArray.length();
+		//System.out.println(maxLetters + ":" + size);
+
 		
 		for( int j = size; j < maxLetters; j++ )
 			output += " ";
-		output += weapons[1];
-		//}
+		if( elements.length != 0)
+			for( int i = 0; i < elements.length; i++)
+				output += array[elements[i]] + "\t";
+		//output += array[ elements[ elements.length -1 ] ];
 		return output;
 	}
 	
@@ -40,17 +34,10 @@ import org.apache.http.conn.ssl.*;public class TextFormatter
 	
 	private int getMaxCount(int max, int newNum)
 	{
-		if( newNum % 5 == 0)
+		if( newNum % NUM_OF_SPACES_IN_TAB == 0)
 			newNum++;
 		if( max < newNum )
 			max = newNum;
 		return max;
-	}
-	
-	private double roundToFive( double num )
-	{
-		double whole = num / NUM_OF_SPACES_IN_TAB;
-		double extra = 0;
-		return 0;
 	}
 }

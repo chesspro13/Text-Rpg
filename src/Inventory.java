@@ -34,15 +34,48 @@ public class Inventory
 	{
 		return weapons;
 	}
+	
+	public LinkedList<String []> getWeaponsString()
+	{
+		LinkedList<String []> temp = new LinkedList<String[]>();
+		for( int i = 0; i < weapons.size(); i++)
+		{
+			temp.add( new String[]{ weapons.get(i).getName(), weapons.get(i).getCost() + "", weapons.get(i).getAttack() + "", weapons.get(i).getHandsRequired() + "", weapons.get(i).getDescription() });     
+		}
+		
+		return temp;
+	}
 
 	public LinkedList<Armor> getArmor()
 	{
 		return armor;
 	}
+	
+	public LinkedList<String []> getArmorString()
+	{
+		LinkedList<String []> temp = new LinkedList<String[]>();
+		for( int i = 0; i < armor.size(); i++)
+		{
+			temp.add( new String[]{ armor.get(i).getName(), armor.get(i).getCost() + "", armor.get(i).getDeffence() + "", armor.get(i).getDescription() });     
+		}
+
+		return temp;
+	}
 
 	public LinkedList<Item> getItems()
 	{
 		return items;
+	}
+	
+	public LinkedList<String []> getItemsString()
+	{
+		LinkedList<String []> temp = new LinkedList<String[]>();
+		for( int i = 0; i < items.size(); i++)
+		{
+			temp.add( new String[]{ items.get(i).getName(), items.get(i).getCost() + "", armor.get(i).getDescription() });     
+		}
+
+		return temp;
 	}
 
 	public void view()

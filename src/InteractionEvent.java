@@ -67,7 +67,7 @@ public class InteractionEvent
 		return -1;
 	}
 
-	public int getOptionInput(String output, LinkedList<String []> array, String [] endOptions, char h)
+	public int getOptionInput(String output, LinkedList<String []> array, String [] endOptions, int[] nums, char h)
 	{
 		LinkedList<String> linkedOption = new LinkedList<String>();
 		TextFormatter tf = new TextFormatter();
@@ -79,7 +79,8 @@ public class InteractionEvent
 				System.out.println( "\n\n" + output );
 				for(int i = 0; i < array.size(); i++)
 				{
-					linkedOption.add( tf.format(array.get(i) ) );
+					if( array.size() != 0 )
+						linkedOption.add( tf.format(array.get(i)[0], array.get(i),new int[]{1, 2, 3, 4}) );
 				}
 
 				for(int i = 0; i < endOptions.length; i++)
@@ -88,13 +89,41 @@ public class InteractionEvent
 				}
 
 				return getOptionInput( output, linkedOption );
-			case '1':
+			case 'b':
 
 				System.out.println( "\n\n" + output );
 
+				
 				for(int i = 0; i < array.size(); i++)
 				{
-					//linkedOption.add(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
+					linkedOption.add(tf.format(array.get(i)[0], array.get(i),new int[]{1}));
+				}
+
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+			case 'c':
+				System.out.println( "\n\n" + output );
+				for(int i = 0; i < array.size(); i++)
+				{
+					linkedOption.add( tf.format(array.get(i)[0], array.get(i),new int[]{}) );
+				}
+				
+				for(int i = 0; i < endOptions.length; i++)
+				{
+					linkedOption.add(endOptions[i]);
+				}
+
+				return getOptionInput( output, linkedOption );
+			case 'd':
+				System.out.println( "\n\n" + output );
+				for(int i = 0; i < array.size(); i++)
+				{
+					if( array.size() != 0 )
+						linkedOption.add( tf.format(array.get(i)[0], array.get(i),nums) );
 				}
 
 				for(int i = 0; i < endOptions.length; i++)
@@ -104,6 +133,7 @@ public class InteractionEvent
 
 				return getOptionInput( output, linkedOption );
 		}
+		
 		return -1;
 	}
 	

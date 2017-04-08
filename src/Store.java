@@ -14,6 +14,8 @@ public class Store
 	StoreState storeState;
 	StoreState lastState;
 
+	String[] endOptions;
+	
 	boolean forceDebug;
 
 	public Store(Player player, GameEvent gameEvent, UiEvent uiEvent, InteractionEvent interactionEvent)
@@ -96,7 +98,7 @@ public class Store
 	{
 		StoreState tab = StoreState.WeaponsTab;
 		LinkedList items = new LinkedList();
-		LinkedList<String []> w = new LinkedList();
+		LinkedList<String []> w;
 
 		while(true)
 		{
@@ -107,41 +109,40 @@ public class Store
 			{
 				case WeaponsTab:
 					temp = "<Weapons> Armor Items\tYour money: $" + player.getMoney();
-
-					w.add(new String [] { Weapons.Stick.getName(), Weapons.Stick.getCost() + "\t" + Weapons.Stick.getAttack() + "\t" + Weapons.Stick.getHandsRequired() + "\t" + Weapons.Stick.getDescription()});
-					w.add(new String [] { Weapons.WoodenSword.getName(), Weapons.WoodenSword.getCost() + "\t" + Weapons.WoodenSword.getAttack() + "\t" + Weapons.WoodenSword.getHandsRequired() + "\t" + Weapons.WoodenSword.getDescription()});
-					w.add(new String [] { Weapons.Dagger.getName(), Weapons.Dagger.getCost() + "\t" + Weapons.Dagger.getAttack() + "\t" + Weapons.Dagger.getHandsRequired() + "\t" + Weapons.Dagger.getDescription()});
-					w.add(new String []	{ Weapons.ShortSword.getName(), Weapons.ShortSword.getCost() + "\t" + Weapons.ShortSword.getAttack() + "\t" + Weapons.ShortSword.getHandsRequired() + "\t" + Weapons.ShortSword.getDescription()});
-					w.add(new String []	{ Weapons.Broadsword.getName(), Weapons.Broadsword.getCost() + "\t" + Weapons.Broadsword.getAttack() + "\t" + Weapons.Broadsword.getHandsRequired() + "\t" + Weapons.Broadsword.getDescription()});
-					w.add(new String []	{ Weapons.Bow.getName(), Weapons.Bow.getCost() + "\t" + Weapons.Bow.getAttack() + "\t" + Weapons.Bow.getHandsRequired() + "\t" + Weapons.Bow.getDescription()});
-					w.add(new String []	{ Weapons.Staff.getName(), Weapons.Staff.getCost() + "\t" + Weapons.Staff.getAttack() + "\t" + Weapons.Staff.getHandsRequired() + "\t" + Weapons.Staff.getDescription()});
-					w.add(new String []	{ Weapons.Mace.getName(), Weapons.Mace.getCost() + "\t" + Weapons.Mace.getAttack() + "\t" + Weapons.Mace.getHandsRequired() + "\t" + Weapons.Mace.getDescription()});
-					w.add(new String []	{ Weapons.Hammer.getName(), Weapons.Hammer.getCost() + "\t" + Weapons.Hammer.getAttack() + "\t" + Weapons.Hammer.getHandsRequired() + "\t" + Weapons.Hammer.getDescription()});
-					w.add(new String []	{ Weapons.Crossbow.getName(), Weapons.Crossbow.getCost() + "\t" + Weapons.Crossbow.getAttack() + "\t" + Weapons.Crossbow.getHandsRequired() + "\t" + Weapons.Crossbow.getDescription()});
-					w.add(new String []	{ Weapons.Greatsword.getName(), Weapons.Greatsword.getCost() + "\t" + Weapons.Greatsword.getAttack() + "\t" + Weapons.Greatsword.getHandsRequired() + "\t" + Weapons.Greatsword.getDescription()});
-					String[] endOptions = new String[]{
+					w  = new LinkedList<String[]>();
+					
+					w.add(new String [] { Weapons.Stick.getName(), Weapons.Stick.getCost() + "", Weapons.Stick.getAttack() + "",  Weapons.Stick.getHandsRequired() + "", Weapons.Stick.getDescription()});
+					w.add(new String [] { Weapons.WoodenSword.getName(), Weapons.WoodenSword.getCost() + "", Weapons.WoodenSword.getAttack() + "", Weapons.WoodenSword.getHandsRequired() + "", Weapons.WoodenSword.getDescription()});
+					w.add(new String [] { Weapons.Dagger.getName(), Weapons.Dagger.getCost() + "", Weapons.Dagger.getAttack() + "", Weapons.Dagger.getHandsRequired() + "", Weapons.Dagger.getDescription()});
+					w.add(new String []	{ Weapons.ShortSword.getName(), Weapons.ShortSword.getCost() + "", Weapons.ShortSword.getAttack() + "", Weapons.ShortSword.getHandsRequired() + "", Weapons.ShortSword.getDescription()});
+					w.add(new String []	{ Weapons.Broadsword.getName(), Weapons.Broadsword.getCost() + "", Weapons.Broadsword.getAttack() + "", Weapons.Broadsword.getHandsRequired() + "", Weapons.Broadsword.getDescription()});
+					w.add(new String []	{ Weapons.Bow.getName(), Weapons.Bow.getCost() + "", Weapons.Bow.getAttack() + "", Weapons.Bow.getHandsRequired() + "", Weapons.Bow.getDescription()});
+					w.add(new String []	{ Weapons.Staff.getName(), Weapons.Staff.getCost() + "", Weapons.Staff.getAttack() + "", Weapons.Staff.getHandsRequired() + "", Weapons.Staff.getDescription()});
+					w.add(new String []	{ Weapons.Mace.getName(), Weapons.Mace.getCost() + "", Weapons.Mace.getAttack() + "", Weapons.Mace.getHandsRequired() + "", Weapons.Mace.getDescription()});
+					w.add(new String []	{ Weapons.Hammer.getName(), Weapons.Hammer.getCost() + "", Weapons.Hammer.getAttack() + "", Weapons.Hammer.getHandsRequired() + "", Weapons.Hammer.getDescription()});
+					w.add(new String []	{ Weapons.Crossbow.getName(), Weapons.Crossbow.getCost() + "", Weapons.Crossbow.getAttack() + "", Weapons.Crossbow.getHandsRequired() + "", Weapons.Crossbow.getDescription()});
+					w.add(new String []	{ Weapons.Greatsword.getName(), Weapons.Greatsword.getCost() + "", Weapons.Greatsword.getAttack() + "", Weapons.Greatsword.getHandsRequired() + "", Weapons.Greatsword.getDescription()});
+					endOptions = new String[]{
 						"View Inventory",
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
 
-					System.out.println("fgghhcdfhhvethh");
-					///*String [] output = 
-
-					choice = interactionEvent.getOptionInput(temp, w, endOptions, 'a');
-					/*System.out.println(choice);
-					if(choice == weaponArray.length - 3)
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, null, 'a');
+					System.out.println(choice);
+					if(choice == w.size() + endOptions.length - 3)
 					{
 						player.viewInventory();
 						storeState = lastState;
 					}
-					else if(choice == weaponArray.length - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabLeft(tab);
-					else if(choice == weaponArray.length - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 						tab = tabRight(tab);
-					else if(choice == weaponArray.length)
+					else if(choice == w.size() + endOptions.length - 0)
 					{
+						System.out.println("gfhnhff" + choice);
 						storeState = StoreState.Welcome;
 						return;
 					}
@@ -171,27 +172,29 @@ public class Store
 							case 11:	if(!player.buyItem(Weapons.Greatsword))
 								{	uiEvent.printWithPause("You do not have enough money for this item.");	}	break;
 
-						}*/
+						}
 					break;
 				case ArmorTab:
 					temp = "Weapons <Armor> Items\tYour money: $" + player.getMoney();
-					String [] armorArray = new String[]{
-						Armor.Leaf.getName() + "\t" + Armor.Leaf.getCost() + "\t" + Armor.Leaf.getDeffence() + "\t" + Armor.Leaf.getDescription(),
-						Armor.Cloth.getName() + "\t" + Armor.Cloth.getCost() + "\t" + Armor.Cloth.getDeffence() + "\t" + Armor.Cloth.getDescription(),
+					w  = new LinkedList<String[]>();
+					w.add( new String[]{ Armor.Leaf.getName(), Armor.Leaf.getCost() + "", Armor.Leaf.getDeffence() + "", Armor.Leaf.getDescription() } );
+					w.add( new String[]{ Armor.Cloth.getName(), Armor.Cloth.getCost() + "", Armor.Cloth.getDeffence() + "", Armor.Cloth.getDescription() } );
+					endOptions = new String[]
+					{
 						"View Inventory",
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					}; 
-					choice = interactionEvent.getOptionInput(temp, armorArray);
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, new int[]{1,2,3}, 'd');
 					System.out.println(choice);
-					if(choice == armorArray.length - 3)
+					if(choice == w.size() + endOptions.length - 3)
 						player.viewInventory();
-					else if(choice == armorArray.length - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabLeft(tab);
-					else if(choice == armorArray.length - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 						tab = tabRight(tab);
-					else if(choice == armorArray.length)
+					else if(choice == w.size() + endOptions.length )
 					{
 						storeState = StoreState.Welcome;
 						return;
@@ -209,21 +212,22 @@ public class Store
 					break;
 				case ItemsTab:
 					temp = "Weapons Armor <Items>\tYour money: $" + player.getMoney();
-					String [] itemsArray = new String[]{
+					w  = new LinkedList<String[]>();
+					endOptions = new String[]{
 						"View Inventory",
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
-					choice = interactionEvent.getOptionInput(temp, itemsArray);
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, null, 'a');
 					System.out.println(choice);
-					if(choice == itemsArray.length - 3)
+					if(choice == w.size() + endOptions.length - 3)
 						player.viewInventory();
-					else if(choice == itemsArray.length - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabLeft(tab);
-					else if(choice == itemsArray.length - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 						tab = tabRight(tab);
-					else if(choice == itemsArray.length)
+					else if(choice == w.size() + endOptions.length)
 					{
 						storeState = StoreState.Welcome;
 						return;
@@ -251,6 +255,7 @@ public class Store
 		LinkedList<Armor> armor;
 		LinkedList<Item> items;
 
+		LinkedList<String []> w;
 		StoreState tab = StoreState.WeaponsTab;
 		String temp;
 		int choice;
@@ -266,32 +271,28 @@ public class Store
 			{
 				case WeaponsTab:
 					temp = "<Weapon> Armor Items\tYour money: $" + player.getMoney();
-					arraySize = weapons.size() + 3;
-					String [] 	weaponsArray = new String[ arraySize ];
-					if(weapons.size() > 0)
-						for(int i = 0; i < weapons.size(); i++)
-						{
-							//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-							weaponsArray[i] = weapons.get(i).getName() + "\t" + weapons.get(i).getCost();
-						}
-					endItems = new String[]{
+					w  = player.getInventory().getWeaponsString();
+					
+					endOptions = new String[]{
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
-					choice = interactionEvent.getOptionInput(temp, weapons, endItems, 1);
+					//choice = -1;
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, null, 'b');
+					
 					choice--;
-					System.out.println(choice + " == " + weaponsArray[choice]);
-					if(choice == arraySize - 3)
+					//System.out.println(choice + " == " + weaponsArray[choice]);
+					if(choice == w.size() + endOptions.length - 3)
 						tab = tabLeft(tab);
-					else if(choice == arraySize - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabRight(tab);
-					else if(choice == arraySize - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
 					}
-					if(weapons.size() > 0)
+					if(choice < w.size() )
 					{
 						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
 						if(--confirm == 0)
@@ -300,32 +301,25 @@ public class Store
 					break;
 				case ArmorTab:
 					temp = "Weapon <Armor> Items\tYour money: $" + player.getMoney();
-					arraySize = armor.size() + 3;
-					String [] 	armorArray = new String[ arraySize ];
-					if(armor.size() > 0)
-						for(int i = 0; i < armor.size(); i++)
-						{
-							//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-							armorArray[i] = armor.get(i).getName() + "\t" + armor.get(i).getCost();
-						}
+					w  = player.getInventory().getArmorString();
 					endItems = new String[]{
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
-					choice = interactionEvent.getOptionInput(temp, 1, armor, endItems);
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, null, 'b');
 					choice--;
-					System.out.println(choice + " == " + armorArray[choice]);
-					if(choice == arraySize - 3)
+					//System.out.println(choice + " == " + armorArray[choice]);
+					if(choice == w.size() + endOptions.length - 3)
 						tab = tabLeft(tab);
-					else if(choice == arraySize - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabRight(tab);
-					else if(choice == arraySize - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
 					}
-					if(armor.size() > 0)
+					if(choice < armor.size())
 					{
 						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
 						if(--confirm == 0)
@@ -334,32 +328,25 @@ public class Store
 					break;
 				case ItemsTab:
 					temp = "Weapon Armor <Items>\tYour money: $" + player.getMoney();
-					arraySize = items.size() + 3;
-					String [] 	itemsArray = new String[ arraySize ];
-					if(items.size() > 0)
-						for(int i = 0; i < items.size(); i++)
-						{
-							//System.out.println(weapons.get(i).getName() + "\t" + weapons.get(i).getCost());
-							itemsArray[i] = items.get(i).getName() + "\t" + items.get(i).getCost();
-						}
-					endItems = new String[]{
+					w = player.getInventory().getItemsString();
+					endOptions = new String[]{
 						"Tab left",
 						"Tab Right",
 						"Leave"
 					};
-					choice = interactionEvent.getOptionInput(temp, items, 1, endItems);
+					choice = interactionEvent.getOptionInput(temp, w, endOptions, null, 'b');
 					choice--;
-					System.out.println(choice + " == " + itemsArray[choice]);
-					if(choice == arraySize - 3)
+					//System.out.println(choice + " == " + itemsArray[choice]);
+					if(choice == w.size() + endOptions.length - 3)
 						tab = tabLeft(tab);
-					else if(choice == arraySize - 2)
+					else if(choice == w.size() + endOptions.length - 2)
 						tab = tabRight(tab);
-					else if(choice == arraySize - 1)
+					else if(choice == w.size() + endOptions.length - 1)
 					{
 						storeState = StoreState.Welcome;
 						return;
 					}
-					if(items.size() > 0)
+					if(choice < items.size())
 					{
 						int confirm = interactionEvent.getOptionInput("Are you sure?", new String[]{"yes", "no"});
 						if(--confirm == 0)
